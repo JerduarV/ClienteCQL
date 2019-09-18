@@ -1,0 +1,7 @@
+<div>
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab *ngFor="let tab of ArregloTabs" label={{tab.getNombreArchivo()}}>
+      <app-tab></app-tab>
+    </mat-tab>
+  </mat-tab-group>  
+</div>
