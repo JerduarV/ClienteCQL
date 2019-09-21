@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 
 import * as ace from 'ace-builds';
-import 'ace-builds/src-noconflict/mode-javascript';
-import 'ace-builds/src-noconflict/theme-monokai';
+import 'ace-builds/src-noconflict/mode-sql';
+import 'ace-builds/src-noconflict/theme-twilight';
 import 'ace-builds/src-noconflict/ext-language_tools';
 import 'ace-builds/src-noconflict/ext-beautify';
 
-const INIT_CONTENT = '';
-const THEME = 'ace/theme/monokai';
-//const LANG = 'ace/mode/javascript';
+const INIT_CONTENT = '//TODO CODE HERE';
+const THEME = 'ace/theme/twilight';
+const LANG = 'ace/mode/sql';
 
 
 @Component({
@@ -20,10 +20,11 @@ export class CodeEditorComponent implements OnInit {
 
   private codeEditor: ace.Ace.Editor;
   private editorBeautify;
+  private value: string;
   @ViewChild('codeEditor') private codeEditorElmRef: ElementRef;
-  @Input() content : string;
+  @Input() public content : string;
 
-  constructor() { }
+  constructor() { this.value = 'CHINGADA MADRE';}
 
   ngOnInit() {
     ace.require('ace/ext/lenguage_tools');
@@ -49,7 +50,7 @@ export class CodeEditorComponent implements OnInit {
     const editor = ace.edit(element, options);
     editor.scrollToLine(25, true, true, function () {});
     editor.setTheme(THEME);
-    //editor.getSession().setMode(LANG);
+    editor.getSession().setMode(LANG);
     editor.setShowFoldWidgets(true);
     return editor;
   }
@@ -69,10 +70,7 @@ export class CodeEditorComponent implements OnInit {
    * @param content Contendo nuevo a setear
    */
   public setCodigo(content: string): void{
-    if(this.content){
-      this.codeEditor.setValue(content);
-      console.log(content);
-    }
+    this.content = content;
   }
 
   public beautifyContent(){

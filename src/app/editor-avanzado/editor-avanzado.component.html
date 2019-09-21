@@ -1,7 +1,44 @@
+<div class="row mb-4 justify-content-right mx-4">
+    <div class="col-4 col-lg-1 col-md-3 col-sm-4 w-75">
+        <button mat-mini-fab class="boton">
+            <mat-icon>get_app</mat-icon>
+          </button>
+    </div>
+    <input #fileUpload type="file" (click)="fileUpload.value = null"(change)="importFile($event)" style="display:none" accept=".txt">
+    <div class="col-4 col-lg-1 col-md-3 col-sm-4 w-75">
+        <button mat-mini-fab class="boton" (click)="fileUpload.click()">
+            <mat-icon>publish</mat-icon>
+          </button>
+    </div>
+    <div class="col-4 col-lg-1 col-md-3 col-sm-4 w-75">
+        <button mat-mini-fab class="boton" (click)="getTab()">
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+    </div>
+    <div class="col-4 col-lg-1 col-md-3 col-sm-4 w-75">
+        <button mat-mini-fab class="boton" (click)="getSelectedText()">
+            <mat-icon>format_italic</mat-icon>
+          </button>
+    </div>
+    <div class="col-4 col-lg-1 col-md-3 col-sm-4 w-75">
+        <button mat-mini-fab class="boton" (click)="RemoveTab()">
+            <mat-icon>remove</mat-icon>
+          </button>
+    </div>
+    <div class="col-4 col-lg-1 col-md-3 col-sm-4 w-75">
+        <button mat-mini-fab class="boton" (click)="addTab()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</div>
 <div>
-  <mat-tab-group animationDuration="0ms">
-    <mat-tab *ngFor="let tab of ArregloTabs" label={{tab.getNombreArchivo()}}>
-      <app-tab></app-tab>
+  <mat-tab-group animationDuration="0ms" #tabGroup (selectedTabChange)="tabChanged($event)">
+    <mat-tab *ngFor="let tab of ArregloTabs" label={{tab.getNombre()}}>
+        <ng-template class="my-code-editor" matTabContent>
+            <ngx-monaco-editor #editor [options]="tab.editorOptions" [(ngModel)]='tab.code' class="my-code-editor"
+              style="height: 350px;" (onDidChangeCursorSelection)="onInitEditor($event)">
+            </ngx-monaco-editor>
+          </ng-template>
     </mat-tab>
   </mat-tab-group>  
 </div>

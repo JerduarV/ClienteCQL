@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CodeEditorComponent } from '../code-editor/code-editor.component';
 import { Archivo } from 'src/Clases Editor/Archivo';
+import { Editor2Component } from '../editor2/editor2.component';
 
 @Component({
   selector: 'app-tab',
@@ -9,7 +10,7 @@ import { Archivo } from 'src/Clases Editor/Archivo';
 })
 export class TabComponent implements OnInit {
 
-  @ViewChild('editor') private editor: CodeEditorComponent;
+  @ViewChild('editor') private editorRef: Editor2Component;
   private archivo: Archivo;
 
   constructor() { 
@@ -32,7 +33,11 @@ export class TabComponent implements OnInit {
   }
 
   public setContenido(n: string):void{
-    this.archivo.setContenido(n);
+    this.editorRef.setCodigo(n);
+  }
+
+  public getContenido(): string{
+    return this.editorRef.getCodigo();
   }
 
 }
