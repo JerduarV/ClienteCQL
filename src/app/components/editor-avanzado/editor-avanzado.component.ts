@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { TabComponent } from '../tab/tab.component';
 import { MatTabChangeEvent } from '@angular/material';
-import { Editor2Component } from '../editor2/editor2.component';
 import { Editor3Component } from '../editor3/editor3.component';
 
 @Component({

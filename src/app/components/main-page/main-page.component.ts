@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EditorAvanzadoComponent } from '../editor-avanzado/editor-avanzado.component';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-main-page',
@@ -12,9 +13,8 @@ export class MainPageComponent implements OnInit {
   @ViewChild(EditorAvanzadoComponent) private editor_avanzado: EditorAvanzadoComponent;
   
   private readonly URL_API: string = 'http://localhost:57174/api';
-  //private readonly http: HttpClient = new HttpClient(null);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private loginService: LoginService) { }
 
   ngOnInit() {
   }
@@ -39,6 +39,13 @@ export class MainPageComponent implements OnInit {
 
   private ArmarQueryPack(msj: string):string{
     return '[+QUERY][+USER]admin[-USER][+DATA]' + msj + '[-DATA][-QUERY]'
+  }
+
+  /**
+   * Método para cerrar la sesión iniciada
+   */
+  public logout() {
+    
   }
 
 }

@@ -5,17 +5,17 @@ import { AppRoutingModule } from "./app-routing/app-routing.module";
 
 
 import { AppComponent } from './app.component';
-import { MainPageComponent } from './main-page/main-page.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
 import { CodeEditorComponent } from './code-editor/code-editor.component';
-import { TabComponent } from './tab/tab.component';
-import { EditorAvanzadoComponent } from './editor-avanzado/editor-avanzado.component';
+import { TabComponent } from './components/tab/tab.component';
+import { EditorAvanzadoComponent } from './components/editor-avanzado/editor-avanzado.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AceEditorModule } from 'ng2-ace-editor';
 
 import { MatTabsModule, MatButtonModule, MatIconModule } from '@angular/material';
-import { Editor2Component } from './editor2/editor2.component';
-import { Editor3Component } from './editor3/editor3.component';
+import { Editor2Component } from './components/editor2/editor2.component';
+import { Editor3Component } from './components/editor3/editor3.component';
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';

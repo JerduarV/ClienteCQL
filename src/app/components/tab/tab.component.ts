@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { CodeEditorComponent } from '../code-editor/code-editor.component';
+import { CodeEditorComponent } from '../../code-editor/code-editor.component';
 import { Archivo } from 'src/Clases Editor/Archivo';
-import { Editor2Component } from '../editor2/editor2.component';
+
 
 @Component({
   selector: 'app-tab',
@@ -10,7 +10,7 @@ import { Editor2Component } from '../editor2/editor2.component';
 })
 export class TabComponent implements OnInit {
 
-  @ViewChild('editor') private editorRef: Editor2Component;
+  @ViewChild('editor') private editorRef: any;
   private archivo: Archivo;
 
   constructor() { 
