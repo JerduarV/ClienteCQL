@@ -7,7 +7,7 @@ div.label-box {
 
 .form-control { border-radius: 0 !important; }
 
-.form-control:disabled { background-color: #525252 !important; }
+.form-control:disabled { background-color: #d1d1d1 !important; }
 
 .output {
     border-bottom-left-radius: .5rem!important;

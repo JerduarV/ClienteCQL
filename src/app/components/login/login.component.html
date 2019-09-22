@@ -16,6 +16,11 @@
     <form>
       <input #user type="text" id="login" class="fadeIn second" name="login" placeholder="Usuario">
       <input #pwd type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
+      <div>
+          <input type="radio" name="gender" class="fadeIn third" value="male">PRINCIPIANTE
+          <input type="radio" name="gender" class="fadeIn third" value="female">  INTERMEDIO
+          <input type="radio" name="gender" class="fadeIn third" value="other" checked>  AVANZADO
+      </div>
       <input type="submit" class="fadeIn fourth" value="Log In" (click)="login(user.value, pwd.value,$event)">
     </form>
 
