@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from '../components/main-page/main-page.component';
 import { LoginComponent } from '../components/login/login.component';
+import { CanActivateViaAuthGuard } from '../Auxiliares/AuthGuard';
+
 
     export const routes: Routes = [
         
@@ -12,6 +14,7 @@ import { LoginComponent } from '../components/login/login.component';
         {
             path: 'main',
             component: MainPageComponent,
+            canActivate: [CanActivateViaAuthGuard]
         },
         {   path: '',
             redirectTo: '/login',
