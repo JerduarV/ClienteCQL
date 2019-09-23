@@ -10,9 +10,8 @@
 
 //EXPRESIONES REGULARES
 [0-9]+\b                                return 'ENTERO';
-[a-zA-Z_ñ]([a-zA-Z0-9_Ñ]*)              return 'ID';
 \[\+DATA\](.|\r\n|\n)+\[\-DATA\]        return 'DATA';
-\[\+MESSAGE\](.|\r\n|\n)*\[\-MESSAGE\]  { yytext = yytext.substr(10,yyleng-20); return 'MESSAGE'; }
+\[\+MESSAGE\](.)*\[\-MESSAGE\]  { yytext = yytext.substr(10,yyleng-20); return 'MESSAGE'; }
 \[\+DESC\](.|\r\n|\n)+\[\-DESC\]        return 'DESC';
 
 //PALABRAS RESERVADAS
@@ -36,6 +35,8 @@
 "ATTRIBUTE"     return 'R_ATTRIBUTE';
 "PROCEDURES"    return 'R_PROCEDURES';
 "PROCEDURE"     return 'R_PROCEDURE';
+
+[a-zA-Z_ñ]([a-zA-Z0-9_Ñ]*)              return 'ID';
 
 //SIGNOS DE AGRUPACIÓN
 "["             return 'CORIZQ';
@@ -74,6 +75,15 @@
                         tipo: TIPO_PACK.PACK_LOGIN,
                         mensaje: resultado
                 };
+        },
+
+        newLogout: function(resultado, f, c){
+                return {
+                        fila: f,
+                        columna: c,
+                        tipo: TIPO_PACK.PACK_LOGOUT,
+                        mensaje: resultado
+                }
         }
     }
 %}
@@ -104,8 +114,8 @@ LOGIN_PACK:
         CORIZQ MAS R_LOGIN CORDER ID CORIZQ MENOS R_LOGIN CORDER        { $$ = PackAPI.newLogin($5,@1.first_line,@1.first_column); }
 ;
 
-LOGOUT:
-        CORIZQ MAS R_LOGOUT CORDER ID CORIZQ MENOS R_LOGOUT CORDER
+LOGOUT_PACK:
+        CORIZQ MAS R_LOGOUT CORDER ID CORIZQ MENOS R_LOGOUT CORDER      { $$ = PackAPI.newLogout($5,@1.first_line,@1.first_column); }
 ;
 
 MESSAGE_PACK:

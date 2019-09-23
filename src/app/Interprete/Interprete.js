@@ -9,15 +9,22 @@ const TIPO_PACK = {
  * @param {*} listaPaquetes Lista de paquetes recibidos
  */
 function InterpretarLup(listaPaquetes, consola){
-    //console.log('INICIANDO INTERPRETE');
-    listaPaquetes.forEach(paquete => {
+    
+    //EN EL CASO QUE SEA UN PAQUETE DE LOGIN
+    if(listaPaquetes[0].tipo == TIPO_PACK.PACK_LOGIN){
+        return ProcesarLogin(listaPaquetes[0]);
+    }
+    //EN EL CASO QUE SEA UN PAQUETE LOGOUT
+    else if(listaPaquetes[0].tipo == TIPO_PACK.PACK_LOGOUT){
+        return ProcesarLogout(listaPaquetes[0]);
+    }
+
+    return listaPaquetes.forEach(paquete => {
         //console.log(paquete.tipo);
         switch (paquete.tipo) {
             case TIPO_PACK.PACK_MENSAJE:
                 ProcesarMessage(paquete,consola);
                 break;
-            case TIPO_PACK.PACK_LOGIN:
-                return ProcesarLogin(paquete);
             default:
                 break;
         }
@@ -31,11 +38,26 @@ function InterpretarLup(listaPaquetes, consola){
  * @param {*} consola Referencia de la consola
  */
 function ProcesarMessage(pack, consola){
-    consola.Imprimir(pack.mensaje);
+    var mensaje = pack.mensaje.replace("\\n","\n");
+    consola.Imprimir(mensaje + '\n');
 }
 
-
+/**
+ * Procesamiento de un paquete de login
+ * @param {*} pack Paquete de login
+ */
 function ProcesarLogin(pack){
+    if(pack.mensaje == "SUCCESS"){
+        return true;
+    }
+    return false;
+}
+
+/**
+ * Procesamiento de un paquete de logout
+ * @param {*} pack Paquete de logout
+ */
+function ProcesarLogout(pack){
     if(pack.mensaje == "SUCCESS"){
         return true;
     }
