@@ -31,6 +31,13 @@ function getPrecedence(operadore){
   }
 }
 
+Blockly.JavaScript['use'] = function(block) {
+  var text_name = block.getFieldValue('NAME');
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'USE ' + text_name + ';\n';
+  return code;
+};
+
 //BLOQUE COMMIT
 Blockly.JavaScript['commit'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
@@ -49,6 +56,37 @@ Blockly.JavaScript['select'] = function(block) {
     code += ' WHERE ' + value_where;
   }
   code += ';\n';
+  return code;
+};
+
+Blockly.JavaScript['select2'] = function(block) {
+  var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+  statements_name = statements_name.slice(0, statements_name.length - 1);
+  var text_tabla = block.getFieldValue('tabla');
+  var value_where = Blockly.JavaScript.valueToCode(block, 'where', Blockly.JavaScript.ORDER_ATOMIC);
+  var statements_order = Blockly.JavaScript.statementToCode(block, 'ORDER');
+  var value_limit = Blockly.JavaScript.valueToCode(block, 'LIMIT', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'SELECT ' + statements_name + ' FROM ' + text_tabla;
+  if(value_where){
+    code += ' WHERE ' + value_where;
+  }
+  if(statements_order){
+    statements_order = statements_order.slice(0, statements_order.length - 1);
+    code += ' ORDER BY ' + statements_order;
+  }
+  if(value_limit){
+    code += ' LIMIT ' + value_limit;
+  }
+  code += ';\n';
+  return code;
+};
+
+Blockly.JavaScript['orderby'] = function(block) {
+  var text_name = block.getFieldValue('NAME');
+  var dropdown_tipo = block.getFieldValue('TIPO');
+  // TODO: Assemble JavaScript into code variable.
+  var code = text_name + ' ' + dropdown_tipo + ',';
   return code;
 };
 
@@ -88,6 +126,28 @@ Blockly.JavaScript['valor_insert'] = function(block) {
   var value_valor = Blockly.JavaScript.valueToCode(block, 'valor', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
   var code = value_valor + ',';
+  return code;
+};
+
+Blockly.JavaScript['set'] = function(block) {
+  var text_name = block.getFieldValue('NAME');
+  var statements_set = Blockly.JavaScript.statementToCode(block, 'SET');
+  statements_set = statements_set.slice(0, statements_set.length - 1);
+  var value_where = Blockly.JavaScript.valueToCode(block, 'WHERE', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'UPDATE ' + text_name + ' SET ' + statements_set;
+  if(value_where){
+    code += ' WHERE ' + value_where;
+  }
+  code += ';\n';
+  return code;
+};
+
+Blockly.JavaScript['camposet'] = function(block) {
+  var text_name = block.getFieldValue('NAME');
+  var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = text_name + ' = ' + value_name + ',';
   return code;
 };
 

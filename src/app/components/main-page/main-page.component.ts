@@ -4,7 +4,7 @@ import { EditorAvanzadoComponent } from '../editor-avanzado/editor-avanzado.comp
 import { LoginService } from '../../services/login.service';
 import { Consola } from 'src/app/Auxiliares/Consola';
 import { UserServiceService } from 'src/app/services/user-service.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 declare var parsear: any;
 declare var InterpretarLup: any;
@@ -16,17 +16,23 @@ declare var InterpretarLup: any;
 })
 export class MainPageComponent implements OnInit {
 
-  @ViewChild(EditorAvanzadoComponent) private editor_avanzado: EditorAvanzadoComponent;
+  @ViewChild('editor') private editor_avanzado: any;
 
 
   private readonly URL_API: string = 'http://localhost:57174/api';
   private consola: Consola = new Consola();
+  private nivel: string;
+  private sub: any;
+
 
   constructor(private http: HttpClient, private loginService: LoginService, private userService: UserServiceService,
-    private router: Router) { }
+    private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    
+    this.sub = this.route.params.subscribe(params => {
+      this.nivel = params['nivel']; // (+) converts string 'id' to a number
+      // In a real app: dispatch action to load the details here.
+   });
   }
 
   /**

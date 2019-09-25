@@ -1,4 +1,23 @@
 Blockly.defineBlocksWithJsonArray([
+  //#region USE
+  {
+    "type": "use",
+    "message0": "USE %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "DB"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 30,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  //#endregion
+
   //#region  COMMIT
   {
     "type": "commit",
@@ -44,6 +63,36 @@ Blockly.defineBlocksWithJsonArray([
     "previousStatement": null,
     "nextStatement": null,
     "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "orderby",
+    "message0": "%1 %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "COLUMNA"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "TIPO",
+        "options": [
+          [
+            "DESC",
+            "DESC"
+          ],
+          [
+            "ASC",
+            "ASC"
+          ]
+        ]
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 90,
     "tooltip": "",
     "helpUrl": ""
   },
@@ -265,6 +314,8 @@ Blockly.defineBlocksWithJsonArray([
         "name": "NAME"
       }
     ],
+    "previousStatement": null,
+    "nextStatement": null,
     "colour": 230,
     "tooltip": "",
     "helpUrl": ""
@@ -308,9 +359,110 @@ Blockly.defineBlocksWithJsonArray([
         "name": "VALORES"
       }
     ],
+    "previousStatement": null,
+    "nextStatement": null,
     "colour": 285,
     "tooltip": "",
     "helpUrl": ""
   },
   //#endregion
+
+  //#region SET
+  {
+    "type": "set",
+    "message0": "UPDATE %1 %2 SET %3 WHERE %4",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "TABLA"
+      },
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "SET",
+        "check": "camposet"
+      },
+      {
+        "type": "input_value",
+        "name": "WHERE"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 90,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "camposet",
+    "message0": "%1 = %2 %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "NAME",
+        "text": "campo"
+      },
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_value",
+        "name": "NAME"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 0,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  //#endregion
+
+  //#region SELECT 2
+  {
+    "type": "select2",
+    "message0": "SELECT %1 FROM %2 %3 WHERE %4 ORDER BY %5 LIMIT %6",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "NAME"
+      },
+      {
+        "type": "field_input",
+        "name": "tabla",
+        "text": "tabla"
+      },
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_value",
+        "name": "where",
+        "check": "where",
+        "align": "CENTRE"
+      },
+      {
+        "type": "input_statement",
+        "name": "ORDER"
+      },
+      {
+        "type": "input_value",
+        "name": "LIMIT",
+        "align": "CENTRE"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 210,
+    "tooltip": "",
+    "helpUrl": ""
+  }
+  //#endregion
+
 ]);

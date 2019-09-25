@@ -42,9 +42,9 @@ export class LoginComponent implements OnInit {
         }else{
           let u: User = new User(user);
           this.userService.setUsuarioLogeado(u);
-
-          if(nivel == 'Avanzado'){
-            this.router.navigate(['/main']);
+          
+          if(nivel == 'Avanzado' || nivel == 'Principiante' || nivel == 'Intermedio'){
+            this.router.navigate(['/main', nivel]);
           }else{
             alert('SELECCIONE UN NIVEL');
           }

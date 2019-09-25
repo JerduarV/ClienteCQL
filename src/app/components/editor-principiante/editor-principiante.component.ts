@@ -22,11 +22,11 @@ export class EditorPrincipianteComponent implements OnInit {
     console.log(this.workspace);
   }
 
-  getCodigo(): void {
+  public getTexto(): string {
     console.log(this.workspace);
     var code = Blockly.JavaScript.workspaceToCode(this.workspace);
     console.log(code);
-    //console.log('saving the program - ', JSON.stringify(cod));
+    return code;
   }
 
 }

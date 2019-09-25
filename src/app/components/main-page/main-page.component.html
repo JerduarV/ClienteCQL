@@ -21,9 +21,19 @@
   
   <!-- the code editor -->
   <div class="row mb-4">
-      <div class="col">
-        <app-editor-principiante></app-editor-principiante>
-      </div>
+        <div *ngIf="nivel=='Principiante'; then thenBlock"></div>
+            <ng-template #thenBlock>
+                <div class="col">
+                    <app-editor-principiante #editor></app-editor-principiante>
+                </div>
+            </ng-template>
+        <div *ngIf="nivel=='Avanzado'; then thenBlock2"></div>
+            <ng-template #thenBlock2>
+                <div class="col">
+                    <app-editor-avanzado #editor></app-editor-avanzado>
+                </div>
+            </ng-template>
+      
   </div>
 
   <!-- output box -->

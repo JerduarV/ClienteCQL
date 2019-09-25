@@ -12,7 +12,7 @@ import { CanActivateViaAuthGuard } from '../Auxiliares/AuthGuard';
             component: LoginComponent,
         },
         {
-            path: 'main',
+            path: 'main/:nivel',
             component: MainPageComponent,
             canActivate: [CanActivateViaAuthGuard]
         },
