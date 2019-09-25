@@ -31,7 +31,13 @@
             "scripts": [
               "src/app/Gramatica/GramaticaLup.js",
               "src/app/Gramatica/prueba.js",
-              "src/app/Interprete/Interprete.js"
+              "src/app/Interprete/Interprete.js",
+              "node_modules/blockly/blockly_compressed.js",
+              "node_modules/blockly/blocks_compressed.js",
+              "node_modules/blockly/javascript_compressed.js",
+              "node_modules/blockly/msg/js/en.js",
+              "src/assets/blockly/CustomBlocks.js",
+              "src/assets/blockly/CustomBlockCode.js"
             ],
             "es5BrowserSupport": true
           },

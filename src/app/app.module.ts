@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from "./app-routing/app-routing.module";
 
@@ -19,6 +19,7 @@ import { Editor3Component } from './components/editor3/editor3.component';
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
+import { EditorPrincipianteComponent } from './components/editor-principiante/editor-principiante.component';
 
 const monacoConfig:  NgxMonacoEditorConfig = {
 
@@ -51,7 +52,8 @@ const monacoConfig:  NgxMonacoEditorConfig = {
     EditorAvanzadoComponent,
     Editor2Component,
     Editor3Component,
-    LoginComponent
+    LoginComponent,
+    EditorPrincipianteComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,7 @@ const monacoConfig:  NgxMonacoEditorConfig = {
   providers: [
     
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas:[NO_ERRORS_SCHEMA]
 })
 export class AppModule { }
