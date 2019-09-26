@@ -13,13 +13,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AceEditorModule } from 'ng2-ace-editor';
 
-import { MatTabsModule, MatButtonModule, MatIconModule } from '@angular/material';
+import { MatTabsModule, MatButtonModule, MatIconModule, MatDialogModule, MatTableModule } from '@angular/material';
 import { Editor2Component } from './components/editor2/editor2.component';
 import { Editor3Component } from './components/editor3/editor3.component';
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { EditorPrincipianteComponent } from './components/editor-principiante/editor-principiante.component';
+import { VentanaErroresComponent } from './components/ventana-errores/ventana-errores.component';
 
 const monacoConfig:  NgxMonacoEditorConfig = {
 
@@ -53,7 +54,8 @@ const monacoConfig:  NgxMonacoEditorConfig = {
     Editor2Component,
     Editor3Component,
     LoginComponent,
-    EditorPrincipianteComponent
+    EditorPrincipianteComponent,
+    VentanaErroresComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +63,8 @@ const monacoConfig:  NgxMonacoEditorConfig = {
     MatTabsModule,
     MatButtonModule,
     MatIconModule,
+    MatDialogModule,
+    MatTableModule,
     AceEditorModule,
     FormsModule,
     MonacoEditorModule.forRoot(monacoConfig),
@@ -71,6 +75,7 @@ const monacoConfig:  NgxMonacoEditorConfig = {
     
   ],
   bootstrap: [AppComponent],
-  schemas:[NO_ERRORS_SCHEMA]
+  schemas:[NO_ERRORS_SCHEMA],
+  entryComponents: [VentanaErroresComponent]
 })
 export class AppModule { }

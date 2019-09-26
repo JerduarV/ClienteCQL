@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { EditorAvanzadoComponent } from '../editor-avanzado/editor-avanzado.component';
 import { LoginService } from '../../services/login.service';
 import { Consola } from 'src/app/Auxiliares/Consola';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { VentanaErroresComponent } from '../ventana-errores/ventana-errores.component';
 
 declare var parsear: any;
 declare var InterpretarLup: any;
@@ -26,7 +27,7 @@ export class MainPageComponent implements OnInit {
 
 
   constructor(private http: HttpClient, private loginService: LoginService, private userService: UserServiceService,
-    private router: Router, private route: ActivatedRoute) { }
+    private router: Router, private route: ActivatedRoute, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -99,6 +100,21 @@ export class MainPageComponent implements OnInit {
    */
   private LimpiarConsola():void{
     this.consola.salida = "";
+    this.consola.lista_select = [];
+    this.consola.lista_errores = [];
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(VentanaErroresComponent,{
+      width: '750px',
+      data: {lista: this.consola.lista_errores, nombre: "jerson"}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }
+
+

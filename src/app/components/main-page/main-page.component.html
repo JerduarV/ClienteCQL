@@ -17,6 +17,11 @@
             Salir
         </button>
     </div>
+    <div class="col-4 col-lg-2 col-md-3 col-sm-4 w-75">
+            <button type="button" class="btn btn-dark btn-sm btn-block px-4 mx-2" (click)="openDialog()">
+                Errores
+            </button>
+    </div>
 </div>
   
   <!-- the code editor -->
@@ -41,6 +46,17 @@
       <div class="col">
           <div class="label-box border"><span class="mx-4 font-weight-light">Consola</span></div>
           <textarea [(ngModel)]="consola.salida" class="form-control output" rows="6" disabled="true" aria-label="output-textarea"></textarea>
+      </div>
+      <div class="col">
+            <mat-tab-group animationDuration="0ms" #tabGroup>
+                    <mat-tab *ngFor="let select of consola.lista_select" label="select">
+                        <ng-template matTabContent>
+                            <div [innerHTML] = select style="align-content: center">
+              
+                            </div>
+                          </ng-template>
+                    </mat-tab>
+            </mat-tab-group> 
       </div>
   </div>
 </div>

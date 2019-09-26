@@ -87,10 +87,10 @@ case 1:
 return $$[$0-1];
 break;
 case 2:
- this.$ = $$[$0-1]; this.$.push($$[$0]);
+ this.$ = $$[$0-1]; this.$.push($$[$0]); 
 break;
 case 3:
- this.$ = [$$[$0]];
+ this.$ = [$$[$0]]; 
 break;
 case 4: case 5: case 6: case 7: case 8: case 9:
  this.$ = $$[$0]; 
@@ -103,6 +103,18 @@ case 11:
 break;
 case 12:
  this.$ = PackAPI.newMensaje($$[$0],_$[$0].first_line,_$[$0].first_column); 
+break;
+case 13:
+ this.$ = PackAPI.newData($$[$0], _$[$0].first_line, _$[$0].first_column); 
+break;
+case 14:
+ this.$ = PackAPI.newError($$[$0-4],$$[$0-7],$$[$0-6],$$[$0-5],_$[$0-11].first_column,_$[$0-11].first_column); 
+break;
+case 15: case 17:
+ this.$ = $$[$0-4]; 
+break;
+case 16:
+ this.$ = $$[$0-4];
 break;
 }
 },
@@ -258,7 +270,9 @@ parse: function parse(input) {
     const TIPO_PACK = {
 	PACK_MENSAJE:   'PACK_MENSAJE',
         PACK_LOGIN:     'PACK_LOGIN',
-        PACK_LOGOUT:    'PACK_LOGOUT'
+        PACK_LOGOUT:    'PACK_LOGOUT',
+        PACK_DATA:      'PACK_DATA',
+        PACK_ERROR:     'PACK_ERROR'
     }
 
     const PackAPI = {
@@ -287,6 +301,27 @@ parse: function parse(input) {
                         columna: c,
                         tipo: TIPO_PACK.PACK_LOGOUT,
                         mensaje: resultado
+                };
+        },
+
+        newData: function(resultado, f, c){
+                return {
+                        fila: f,
+                        columna: c,
+                        mensaje: resultado,
+                        tipo: TIPO_PACK.PACK_DATA
+                };
+        },
+
+        newError: function(mensaje, fila_error, col_error, tipo_error, f, c){
+                return {
+                        fila: f,
+                        columna: c,
+                        mensaje: mensaje,
+                        fila_error: fila_error,
+                        col_error: col_error,
+                        tipo_error: tipo_error,
+                        tipo: TIPO_PACK.PACK_ERROR
                 }
         }
     }
@@ -626,11 +661,11 @@ case 2:// comentario multiple líneas
 break;
 case 3:return 28;
 break;
-case 4:return 21;
+case 4: yy_.yytext = yy_.yytext.substr(7,yy_.yyleng-14); return 21; 
 break;
 case 5: yy_.yytext = yy_.yytext.substr(10,yy_.yyleng-20); return 20; 
 break;
-case 6:return 26;
+case 6: yy_.yytext = yy_.yytext.substr(7,yy_.yyleng-14); return 26; 
 break;
 case 7:return 15;
 break;
@@ -688,7 +723,7 @@ case 33:console.error('Este es un error léxico: ' + yy_.yytext + ', en la linea
 break;
 }
 },
-rules: [/^(?:\s+)/i,/^(?:\/\/.*)/i,/^(?:[\/][*][^*]*[*]+([^\/*][^*]*[*]+)*[\/])/i,/^(?:[0-9]+\b)/i,/^(?:\[\+DATA\](.|\r\n|\n)+\[-DATA\])/i,/^(?:\[\+MESSAGE\](.)*\[-MESSAGE\])/i,/^(?:\[\+DESC\](.|\r\n|\n)+\[-DESC\])/i,/^(?:LOGIN\b)/i,/^(?:LOGOUT\b)/i,/^(?:DATA\b)/i,/^(?:ERROR\b)/i,/^(?:LINE\b)/i,/^(?:COLUMN\b)/i,/^(?:TYPE\b)/i,/^(?:DESC\b)/i,/^(?:DATABASES\b)/i,/^(?:DATABASE\b)/i,/^(?:NAME\b)/i,/^(?:TABLES\b)/i,/^(?:TABLE\b)/i,/^(?:COLUMNS\b)/i,/^(?:COLUMN\b)/i,/^(?:TYPES\b)/i,/^(?:ATTRIBUTES\b)/i,/^(?:ATTRIBUTE\b)/i,/^(?:PROCEDURES\b)/i,/^(?:PROCEDURE\b)/i,/^(?:[a-zA-Z_ñ]([a-zA-Z0-9_Ñ]*))/i,/^(?:\[)/i,/^(?:\])/i,/^(?:\+)/i,/^(?:-)/i,/^(?:$)/i,/^(?:.)/i],
+rules: [/^(?:\s+)/i,/^(?:\/\/.*)/i,/^(?:[\/][*][^*]*[*]+([^\/*][^*]*[*]+)*[\/])/i,/^(?:[0-9]+\b)/i,/^(?:\[\+DATA\](.)*\[-DATA\])/i,/^(?:\[\+MESSAGE\](.)*\[-MESSAGE\])/i,/^(?:\[\+DESC\](.)*\[-DESC\])/i,/^(?:LOGIN\b)/i,/^(?:LOGOUT\b)/i,/^(?:DATA\b)/i,/^(?:ERROR\b)/i,/^(?:LINE\b)/i,/^(?:COLUMN\b)/i,/^(?:TYPE\b)/i,/^(?:DESC\b)/i,/^(?:DATABASES\b)/i,/^(?:DATABASE\b)/i,/^(?:NAME\b)/i,/^(?:TABLES\b)/i,/^(?:TABLE\b)/i,/^(?:COLUMNS\b)/i,/^(?:COLUMN\b)/i,/^(?:TYPES\b)/i,/^(?:ATTRIBUTES\b)/i,/^(?:ATTRIBUTE\b)/i,/^(?:PROCEDURES\b)/i,/^(?:PROCEDURE\b)/i,/^(?:[a-zA-Z_ñ]([a-zA-Z0-9_Ñ]*))/i,/^(?:\[)/i,/^(?:\])/i,/^(?:\+)/i,/^(?:-)/i,/^(?:$)/i,/^(?:.)/i],
 conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33],"inclusive":true}}
 });
 return lexer;
