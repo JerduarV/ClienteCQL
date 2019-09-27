@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
-import { TabComponent } from '../tab/tab.component';
 import { MatTabChangeEvent } from '@angular/material';
 import { Editor3Component } from '../editor3/editor3.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-editor-avanzado',
@@ -15,8 +15,9 @@ export class EditorAvanzadoComponent implements OnInit {
   private ArregloTabs : Editor3Component[];
   private selectedTab : Editor3Component = null;
   private indexSelectedTab: number;
+  fileUrl;
 
-  constructor() { 
+  constructor(private sanitizer: DomSanitizer) { 
     this.ArregloTabs = [];
   }
 
@@ -27,6 +28,10 @@ export class EditorAvanzadoComponent implements OnInit {
     this.ArregloTabs.push(tab);
   }
 
+  /**
+   * Método para guardar archivo al editor
+   * @param event Importar archivo al editor
+   */
   importFile(event) {
 
     if (event.target.files.length == 0) {
@@ -42,9 +47,20 @@ export class EditorAvanzadoComponent implements OnInit {
         //console.log(fileReader.result as string);
       }
       fileReader.readAsText(file);
+  }
+
+  exportFile(){
+    if(this.selectedTab == null){
+      return;
     }
+    let data = this.getTexto();
+    const blob = new Blob([data], { type: 'application/octet-stream' });
+
+    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+  }
 
   ngOnInit() {
+    
   }
 
   public AddTab(nombreTab: string, contenido: string) : Editor3Component{
