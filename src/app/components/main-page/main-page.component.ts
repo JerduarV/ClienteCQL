@@ -54,6 +54,7 @@ export class MainPageComponent implements OnInit {
         res => {
           console.log(res);
           (function ($) {
+            //if(res == '')return;
             a = $(res);
           })(parsear);
           //console.log(res);
