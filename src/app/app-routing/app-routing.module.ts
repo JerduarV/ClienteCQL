@@ -16,11 +16,15 @@ import { CanActivateViaAuthGuard } from '../Auxiliares/AuthGuard';
             component: MainPageComponent,
             canActivate: [CanActivateViaAuthGuard]
         },
-        {   path: '',
+        {   
+            path: '',
             redirectTo: '/login',
             pathMatch: 'full'
         },
-        { path: '**', redirectTo: '/login' }
+        {
+            path: '**', 
+            redirectTo: '/login' 
+        }
     ];
 
     @NgModule({

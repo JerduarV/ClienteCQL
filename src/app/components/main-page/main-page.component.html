@@ -43,21 +43,39 @@
 
   <!-- output box -->
   <div class="row mt-4">
-      <div class="col">
-          <div class="label-box border"><span class="mx-4 font-weight-light">Consola</span></div>
-          <textarea [(ngModel)]="consola.salida" class="form-control output" rows="6" disabled="true" aria-label="output-textarea"></textarea>
-      </div>
-      <div class="col">
-            <mat-tab-group animationDuration="0ms" #tabGroup>
-                    <mat-tab *ngFor="let select of consola.lista_select" label="select">
-                        <ng-template matTabContent>
-                            <div [innerHTML] = select style="align-content: center">
-              
-                            </div>
-                          </ng-template>
-                    </mat-tab>
-            </mat-tab-group> 
-      </div>
+      
+    <div class="col">
+        <mat-tab-group animationDuration="0ms" #tabGroup>
+                <mat-tab label="CONSOLA">
+                    <ng-template matTabContent>
+                        <div class="col">
+                            <div class="label-box border"><span class="mx-4 font-weight-light">Consola</span></div>
+                            <textarea [(ngModel)]="consola.salida" class="form-control output" rows="6" disabled="true" aria-label="output-textarea"></textarea>
+                        </div>
+                      </ng-template>
+                </mat-tab>
+                <mat-tab label="CONSOLA LUP">
+                    <ng-template matTabContent>
+                        <div class="col">
+                            <div class="label-box border"><span class="mx-4 font-weight-light">LUP</span></div>
+                            <textarea [(ngModel)]="lup" class="form-control output" rows="6" disabled="true" aria-label="output-textarea"></textarea>
+                        </div>
+                      </ng-template>
+                </mat-tab>
+        </mat-tab-group> 
+    </div>
   </div>
+  <!-- CONSOLA DE SELECT -->
+  <div class="col">
+    <mat-tab-group animationDuration="0ms" #tabGroup>
+            <mat-tab *ngFor="let select of consola.lista_select" label="select">
+                <ng-template matTabContent>
+                    <div [innerHTML] = select style="align-content: center">
+      
+                    </div>
+                  </ng-template>
+            </mat-tab>
+    </mat-tab-group> 
+</div>
 </div>
 

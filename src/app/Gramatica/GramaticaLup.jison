@@ -116,7 +116,8 @@
 %%
 
 S:
-        L_PACK EOF      {return $1;}
+        L_PACK EOF      { return $1; }
+    |   EOF             { return []; }
 ;
 
 L_PACK:

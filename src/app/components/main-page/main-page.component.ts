@@ -24,6 +24,7 @@ export class MainPageComponent implements OnInit {
   private consola: Consola = new Consola();
   private nivel: string;
   private sub: any;
+  private lup: string = "";
 
 
   constructor(private http: HttpClient, private loginService: LoginService, private userService: UserServiceService,
@@ -42,6 +43,7 @@ export class MainPageComponent implements OnInit {
    */
   public Ejecutar(): void{
     this.LimpiarConsola();
+    this.lup = '>> PAQUETE ENVIADO::\n' + this.ArmarQueryPack(this.editor_avanzado.getTexto()) + '\n';
     if(this.editor_avanzado){
       var arreglo = {
         mensaje : this.ArmarQueryPack(this.editor_avanzado.getTexto())
@@ -52,7 +54,7 @@ export class MainPageComponent implements OnInit {
 
       this.http.post(this.URL_API + '/LUP', arreglo).subscribe(
         res => {
-          console.log(res);
+          this.lup += '>> PAQUETE RECIBIDO::\n' + this.ArmarQueryPack(res.toString()) + '\n';
           (function ($) {
             //if(res == '')return;
             a = $(res);
