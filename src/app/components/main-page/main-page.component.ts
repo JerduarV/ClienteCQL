@@ -32,8 +32,7 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.nivel = params['nivel']; // (+) converts string 'id' to a number
-      // In a real app: dispatch action to load the details here.
+      this.nivel = params['nivel'];
    });
   }
 
@@ -43,7 +42,8 @@ export class MainPageComponent implements OnInit {
    */
   public Ejecutar(): void{
     this.LimpiarConsola();
-    this.lup = '>> PAQUETE ENVIADO::\n' + this.ArmarQueryPack(this.editor_avanzado.getTexto()) + '\n';
+    this.lup = (new Date(Date.now())).toString() + '\n >> PAQUETE ENVIADO::\n' + this.ArmarQueryPack(this.editor_avanzado.getTexto()) + '\n';
+    
     if(this.editor_avanzado){
       var arreglo = {
         mensaje : this.ArmarQueryPack(this.editor_avanzado.getTexto())
@@ -54,7 +54,7 @@ export class MainPageComponent implements OnInit {
 
       this.http.post(this.URL_API + '/LUP', arreglo).subscribe(
         res => {
-          this.lup += '>> PAQUETE RECIBIDO::\n' + this.ArmarQueryPack(res.toString()) + '\n';
+          this.lup += '>> PAQUETE RECIBIDO::\n' + res + '\n';
           (function ($) {
             //if(res == '')return;
             a = $(res);
@@ -114,7 +114,7 @@ export class MainPageComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      //console.log('The dialog was closed');
     });
   }
 

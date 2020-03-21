@@ -22,7 +22,7 @@ import { LoginComponent } from './components/login/login.component';
 import { EditorPrincipianteComponent } from './components/editor-principiante/editor-principiante.component';
 import { VentanaErroresComponent } from './components/ventana-errores/ventana-errores.component';
 
-const monacoConfig:  NgxMonacoEditorConfig = {
+export const monacoConfig:  NgxMonacoEditorConfig = {
 
   defaultOptions: { scrollBeyondLastLine: false },
   onMonacoLoad: () => {
